@@ -14,4 +14,29 @@
  * limitations under the License.
  */
 
-include ':app', ':mastodon4j_to_twitter4j', ':glide_apng_decoder'
+package com.github.moko256.glide_apng_decoder;
+
+import android.graphics.drawable.Animatable;
+
+/**
+ * Created by moko256 on 2017/10/28.
+ *
+ * @author moko256
+ */
+
+public class ApngDrawable implements Animatable {
+    @Override
+    public void start() {
+
+    }
+
+    @Override
+    public void stop() {
+
+    }
+
+    @Override
+    public boolean isRunning() {
+        return false;
+    }
+}
