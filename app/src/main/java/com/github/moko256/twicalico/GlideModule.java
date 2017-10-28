@@ -17,6 +17,7 @@
 package com.github.moko256.twicalico;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
@@ -24,6 +25,7 @@ import com.bumptech.glide.Registry;
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.AppGlideModule;
+import com.github.moko256.glide_apng_decoder.ApngDecoder;
 
 import java.io.InputStream;
 
@@ -43,12 +45,17 @@ public class GlideModule extends AppGlideModule {
 
     @Override
     public void registerComponents(Context context, Glide glide, Registry registry) {
-        registry.append(
+        registry.replace(
                 GlideUrl.class,
                 InputStream.class,
                 new OkHttpUrlLoader.Factory(
                         GlobalApplication.getOkHttpClient()
                 )
+        );
+        registry.append(
+                InputStream.class,
+                Drawable.class,
+                new ApngDecoder()
         );
     }
 

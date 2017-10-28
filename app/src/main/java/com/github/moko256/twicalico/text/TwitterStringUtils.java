@@ -19,6 +19,7 @@ package com.github.moko256.twicalico.text;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -34,7 +35,7 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.resource.gif.GifDrawable;
+import com.github.moko256.glide_apng_decoder.ApngDecoder;
 import com.github.moko256.mastodon.MastodonTwitterImpl;
 import com.github.moko256.twicalico.GlideApp;
 import com.github.moko256.twicalico.GlideRequests;
@@ -43,6 +44,9 @@ import com.github.moko256.twicalico.R;
 import com.github.moko256.twicalico.SearchResultActivity;
 import com.github.moko256.twicalico.ShowUserActivity;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
@@ -179,10 +183,14 @@ public class TwitterStringUtils {
                     GlideRequests glideRequests = GlideApp.with(context);
                     for (String s : list){
                         try {
-                            Drawable value = glideRequests.load(s).submit().get();
+                            File source = glideRequests.asFile().load(s).submit().get();
+                            Drawable value = new ApngDecoder().decode(
+                                    new FileInputStream(source),
+                                    0,0,null
+                            ).get();
                             value.setBounds(0, 0, imageSize, imageSize);
                             map.put(s, value);
-                        } catch (InterruptedException | ExecutionException e) {
+                        } catch (InterruptedException | ExecutionException | IOException e) {
                             e.printStackTrace();
                         }
                     }
@@ -194,7 +202,7 @@ public class TwitterStringUtils {
                     if (previewText.toString().equals(textView.getText().toString())) {
                         textView.setText(Html.fromHtml(tweet, key ->{
                             Drawable value = map.get(key);
-                            if (value instanceof GifDrawable){
+                            if (value instanceof AnimationDrawable){
                                 value.setCallback(new Drawable.Callback() {
                                     @Override
                                     public void invalidateDrawable(@NonNull Drawable who) {
@@ -213,8 +221,7 @@ public class TwitterStringUtils {
 
                                     }
                                 });
-                                ((GifDrawable) value).setLoopCount(GifDrawable.LOOP_FOREVER);
-                                ((GifDrawable) value).start();
+                                ((AnimationDrawable) value).start();
                             }
                             return value;
                         }, null));
