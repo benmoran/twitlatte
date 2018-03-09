@@ -18,13 +18,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 'android-P'
+    buildToolsVersion '28.0.0-rc1'
 
     defaultConfig {
         applicationId 'com.github.moko256.twicalico'
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 'P'
         versionCode 61
         versionName "0.9.8 (${new Date().toString()})"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

@@ -59,8 +59,8 @@ class ImageKeyboardEditText : AppCompatEditText {
                 }
             }
             val result = imageAddedListener?.onAdded(inputContentInfo.contentUri)
-            if (inputContentInfo.linkUri != null && result == true) {
-                text.append(" " + inputContentInfo.linkUri?.toString())
+            if (inputContentInfo.linkUri != null && result == true && text != null) {
+                text?.append(" " + inputContentInfo.linkUri?.toString())
             }
             true
         }
