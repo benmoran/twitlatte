@@ -23,6 +23,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.util.Pair;
@@ -261,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements BaseListFragment.
                             }
                             singleSubscriber.onSuccess(r);
                         })
-                        .subscribeOn(Schedulers.newThread())
+                        .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 o -> {
@@ -354,7 +355,12 @@ public class MainActivity extends AppCompatActivity implements BaseListFragment.
     }
 
     private void startMyUserActivity() {
-        startActivity(ShowUserActivity.getIntent(this, GlobalApplication.userId));
+        ActivityOptionsCompat animation = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,
+                userImage,
+                "icon_image"
+        );
+        startActivity(ShowUserActivity.getIntent(this, GlobalApplication.userId), animation.toBundle());
     }
 
     private void addFragment(Fragment fragment){
@@ -420,7 +426,7 @@ public class MainActivity extends AppCompatActivity implements BaseListFragment.
                                 subscriber.onError(e);
                             }
                         })
-                        .subscribeOn(Schedulers.newThread())
+                        .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 result -> {

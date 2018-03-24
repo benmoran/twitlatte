@@ -16,7 +16,10 @@
 
 package com.github.moko256.twicalico;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,13 +58,14 @@ class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
         return data.get(position);
     }
 
+    @NonNull
     @Override
-    public UsersAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public UsersAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_user, viewGroup, false));
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         User item=GlobalApplication.userCache.get(data.get(i));
 
         glideRequests.load(item.get400x400ProfileImageURLHttps()).circleCrop().into(viewHolder.userUserImage);
@@ -69,14 +73,25 @@ class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
         viewHolder.userUserName.setText(item.getName());
         viewHolder.userUserId.setText(TwitterStringUtils.plusAtMark(item.getScreenName()));
         viewHolder.itemView.setOnClickListener(
-                v -> context.startActivity(ShowUserActivity.getIntent(context, item.getId()))
+                v -> {
+                    ActivityOptionsCompat animation = ActivityOptionsCompat
+                            .makeSceneTransitionAnimation(
+                                    ((Activity) context),
+                                    viewHolder.userUserImage,
+                                    "icon_image"
+                            );
+                    context.startActivity(
+                            ShowUserActivity.getIntent(context, item.getId()),
+                            animation.toBundle()
+                    );
+                }
         );
         viewHolder.userLockIcon.setVisibility(item.isProtected()? View.VISIBLE: View.GONE);
 
     }
 
     @Override
-    public void onViewRecycled(ViewHolder holder) {
+    public void onViewRecycled(@NonNull ViewHolder holder) {
         super.onViewRecycled(holder);
         glideRequests.clear(holder.userUserImage);
     }

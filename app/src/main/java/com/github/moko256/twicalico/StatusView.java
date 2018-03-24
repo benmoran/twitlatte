@@ -18,11 +18,8 @@ package com.github.moko256.twicalico;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v4.widget.Space;
-import android.support.v7.content.res.AppCompatResources;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -32,6 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +43,6 @@ import rx.schedulers.Schedulers;
 import twitter4j.MediaEntity;
 import twitter4j.Status;
 import twitter4j.TwitterException;
-import twitter4j.util.TimeSpanConverter;
 
 /**
  * Created by moko256 on 2017/02/17.
@@ -77,8 +74,6 @@ public class StatusView extends FrameLayout {
     TextView likeCount;
     TextView retweetCount;
 
-    TimeSpanConverter timeSpanConverter;
-    
     public StatusView(Context context) {
         this(context, null);
     }
@@ -110,16 +105,10 @@ public class StatusView extends FrameLayout {
 
         likeButton = findViewById(R.id.tweet_content_like_button);
         retweetButton = findViewById(R.id.tweet_content_retweet_button);
-
         replyButton = findViewById(R.id.tweet_content_reply_button);
-        Drawable replyIcon= DrawableCompat.wrap(AppCompatResources.getDrawable(context, R.drawable.ic_reply_white_24dp));
-        DrawableCompat.setTintList(replyIcon, ContextCompat.getColorStateList(context, R.color.reply_button_color_stateful));
-        replyButton.setImageDrawable(replyIcon);
 
         likeCount = findViewById(R.id.tweet_content_like_count);
         retweetCount = findViewById(R.id.tweet_content_retweet_count);
-
-        timeSpanConverter=new TimeSpanConverter();
     }
 
     public Status getStatus() {
@@ -204,9 +193,35 @@ public class StatusView extends FrameLayout {
             }
         }
 
-        timeStampText.setText(timeSpanConverter.toTimeSpanString(item.getCreatedAt().getTime()));
-        userImage.setOnClickListener(v-> getContext().startActivity(ShowUserActivity.getIntent(getContext(), item.getUser().getId())));
-        setOnClickListener(v -> getContext().startActivity(ShowTweetActivity.getIntent(getContext(), item.getId())));
+        timeStampText.setText(DateUtils.getRelativeTimeSpanString(
+                item.getCreatedAt().getTime(),
+                System.currentTimeMillis(),
+                0
+        ));
+        userImage.setOnClickListener(v -> {
+            ActivityOptionsCompat animation = ActivityOptionsCompat
+                    .makeSceneTransitionAnimation(
+                            ((Activity) getContext()),
+                            v,
+                            "icon_image"
+                    );
+            getContext().startActivity(
+                    ShowUserActivity.getIntent(getContext(), item.getUser().getId()),
+                    animation.toBundle()
+            );
+        });
+        setOnClickListener(v -> {
+            ActivityOptionsCompat animation = ActivityOptionsCompat
+                    .makeSceneTransitionAnimation(
+                            ((Activity) getContext()),
+                            userImage,
+                            "icon_image"
+                    );
+            getContext().startActivity(
+                    ShowTweetActivity.getIntent(getContext(), item.getId()),
+                    animation.toBundle()
+            );
+        });
 
         Status quotedStatus=item.getQuotedStatus();
         if(quotedStatus!=null){
@@ -248,7 +263,7 @@ public class StatusView extends FrameLayout {
                         subscriber.onError(e);
                     }
                 })
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         result->{
@@ -278,7 +293,7 @@ public class StatusView extends FrameLayout {
                         subscriber.onError(e);
                     }
                 })
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         result->{

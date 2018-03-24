@@ -85,7 +85,7 @@ public class ShowTweetActivity extends AppCompatActivity {
         if (status == null){
             subscriptions.add(
                     updateStatus()
-                            .subscribeOn(Schedulers.newThread())
+                            .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     result->{
@@ -108,7 +108,7 @@ public class ShowTweetActivity extends AppCompatActivity {
         swipeRefreshLayout.setColorSchemeResources(R.color.color_primary);
         swipeRefreshLayout.setOnRefreshListener(() -> subscriptions.add(
                 updateStatus()
-                        .subscribeOn(Schedulers.newThread())
+                        .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 result -> {
@@ -178,7 +178,7 @@ public class ShowTweetActivity extends AppCompatActivity {
                     try {
                         Status status = GlobalApplication.twitter.showStatus(statusId);
                         GlobalApplication.statusCache.add(status);
-                        subscriber.onSuccess(status);
+                        subscriber.onSuccess(GlobalApplication.statusCache.get(statusId));
                     } catch (TwitterException e) {
                         subscriber.onError(e);
                     }
@@ -227,6 +227,8 @@ public class ShowTweetActivity extends AppCompatActivity {
             model.setInReplyToStatusId(item.getId());
             subscriptions.add(
                     model.postTweet()
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
                                     it -> {
                                         replyText.setText(TwitterStringUtils.convertToReplyTopString(
