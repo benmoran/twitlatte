@@ -29,7 +29,7 @@ class IdListModel(
     val list = ArrayList<Long>()
 
     val listTopAdded = PublishSubject.create<Int>()
-    val listGapAdded = PublishSubject.create<IntRange>()
+    val listGapReplaced = PublishSubject.create<Pair<Int, Int>>() // position, size
     val listBottomAdded = PublishSubject.create<Int>()
 
     fun requestTop(){
@@ -50,7 +50,7 @@ class IdListModel(
                 .observeOn(Schedulers.io())
                 .map {
                     val result = ArrayList(it)
-                    if (result[result.size - 1] == result[position]) {
+                    if (result[result.size - 1] == list[position]) {
                         result.removeAt(result.size - 1)
                     } else {
                         result.add(-1L)
@@ -58,8 +58,9 @@ class IdListModel(
                     result
                 }
                 .subscribe{
+                    list.removeAt(position)
                     list.addAll(position, it)
-                    listGapAdded.onNext(position..position + it.size)
+                    listGapReplaced.onNext(position to it.size)
                 }
     }
 
