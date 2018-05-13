@@ -17,11 +17,11 @@
 #}
 
 -dontwarn twitter4j.**
--keep,allowoptimization class !twitter4j.util.*,twitter4j.** { *; }
+-keep,allowoptimization class twitter4j.* { *; }
+-keep,allowoptimization class twitter4j.conf.PropertyConfigurationFactory
 
 -keepclassmembers class android.support.v7.widget.SearchView { *; }
 -keep,allowoptimization class android.support.v7.app.AppCompatViewInflater
--keep,allowoptimization class com.github.moko256.twicalico.cacheMap.StatusCacheMap$CachedStatus { *; }
 
 -dontwarn java.lang.invoke.*
 -dontwarn **$$Lambda$*

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright 2018 The twicalico authors
+  ~ Copyright 2015-2018 The twitlatte authors
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -40,7 +40,20 @@
             android:id="@+id/tweet_retweet_user_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:layout_marginLeft="16dp"
-            tools:text="@string/repeat_by"/>
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/tweet_retweet_time_stamp_text"
+            tools:text="@string/retweeted_by"/>
+
+        <TextView
+            android:id="@+id/tweet_retweet_time_stamp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="?android:textColorSecondary"
+            android:lines="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:gravity="right"
+            tools:text="time stamp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -104,7 +117,7 @@
             android:textColor="?android:textColorSecondary"
             tools:text="\@user_id"/>
 
-        <com.github.moko256.twicalico.widget.TweetImageTableView
+        <com.github.moko256.twitlatte.widget.TweetImageTableView
             android:id="@+id/tweet_image_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -193,7 +206,7 @@
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="6dp"
-            android:button="@drawable/like_button_drawable_stateful"
+            android:button="@drawable/like_button_stateful"
             app:buttonTint="@color/toggle_button_color_stateful"/>
 
         <TextView
@@ -218,7 +231,7 @@
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="6dp"
-            android:button="@drawable/ic_repeat_black_24dp"
+            android:button="@drawable/repeat_button_stateful"
             app:buttonTint="@color/toggle_button_color_stateful"/>
 
         <android.support.v7.widget.AppCompatImageButton
@@ -232,7 +245,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="30sp"
             android:background="?attr/controlBackground"
-            app:tint="@color/reply_button_color_stateful"
+            app:tint="@color/image_button_color_stateful"
             app:srcCompat="@drawable/ic_reply_white_24dp"
             tools:ignore="PrivateResource" />
 

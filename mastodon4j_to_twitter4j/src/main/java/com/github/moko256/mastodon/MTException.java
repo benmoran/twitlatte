@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 The twicalico authors
+ * Copyright 2015-2018 The twitlatte authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,11 @@ public class MTException extends TwitterException {
     }
 
     @Override
-    public String getMessage() {
+    public String getErrorMessage() {
+        return convertErrorString(exception);
+    }
+
+    public static String convertErrorString(Mastodon4jRequestException exception){
         String message;
         if (exception.isErrorResponse()) {
             try {
