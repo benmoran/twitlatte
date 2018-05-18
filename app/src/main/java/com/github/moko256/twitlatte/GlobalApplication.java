@@ -26,7 +26,6 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.util.LruCache;
-import android.support.v7.app.AppCompatDelegate;
 import android.widget.Toast;
 
 import com.github.moko256.mastodon.MastodonTwitterImpl;
@@ -41,6 +40,7 @@ import com.github.moko256.twitlatte.notification.ExceptionNotification;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import okhttp3.OkHttpClient;
 import twitter4j.AlternativeHttpClientImpl;
 import twitter4j.HttpClient;
@@ -172,7 +172,7 @@ public class GlobalApplication extends Application {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         @AppCompatDelegate.NightMode
-        int mode=AppCompatDelegate.MODE_NIGHT_NO;
+        int mode= AppCompatDelegate.MODE_NIGHT_NO;
 
         switch(defaultSharedPreferences.getString("nightModeType","mode_night_no_value")){
 

@@ -22,10 +22,10 @@ import android.os.Build
 import android.support.v13.view.inputmethod.EditorInfoCompat
 import android.support.v13.view.inputmethod.InputConnectionCompat
 import android.support.v13.view.inputmethod.InputContentInfoCompat
-import android.support.v7.widget.AppCompatEditText
 import android.util.AttributeSet
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputConnection
+import androidx.appcompat.widget.AppCompatEditText
 
 
 /**

@@ -18,8 +18,6 @@ package com.github.moko256.twitlatte.widget;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.v7.content.res.AppCompatResources;
-import android.support.v7.widget.GridLayout;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -35,6 +33,8 @@ import com.github.moko256.twitlatte.R;
 import com.github.moko256.twitlatte.ShowImageActivity;
 import com.github.moko256.twitlatte.text.TwitterStringUtils;
 
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.gridlayout.widget.GridLayout;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 import twitter4j.MediaEntity;
 

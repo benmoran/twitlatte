@@ -28,7 +28,7 @@ import android.view.MotionEvent;
  * @author moko256
  */
 
-public class ViewPager extends android.support.v4.view.ViewPager {
+public class ViewPager extends androidx.viewpager.widget.ViewPager {
 
     public ViewPager(@NonNull Context context) {
         super(context);

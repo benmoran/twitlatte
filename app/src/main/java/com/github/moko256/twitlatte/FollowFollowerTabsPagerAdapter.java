@@ -17,10 +17,11 @@
 package com.github.moko256.twitlatte;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 
 import com.github.moko256.twitlatte.widget.FragmentPagerAdapter;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * Created by moko256 on 2016/05/28.
@@ -31,7 +32,7 @@ class FollowFollowerTabsPagerAdapter extends FragmentPagerAdapter {
     private Context context;
     long userId;
 
-    FollowFollowerTabsPagerAdapter(FragmentManager fm, Context context,long userId) {
+    FollowFollowerTabsPagerAdapter(FragmentManager fm, Context context, long userId) {
         super(fm);
         this.context = context;
         this.userId = userId;

@@ -18,10 +18,6 @@ package com.github.moko256.twitlatte;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -39,6 +35,10 @@ import com.github.moko256.twitlatte.text.TwitterStringUtils;
 
 import java.text.DateFormat;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import rx.Single;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -108,7 +108,7 @@ public class UserInfoFragment extends Fragment implements ToolbarTitleInterface 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_show_user_info,container,false);
 
-        glideRequests =GlideApp.with(this);
+        glideRequests =GlideApp.with(this.getContext());
 
         swipeRefreshLayout = view.findViewById(R.id.show_user_swipe_refresh);
         swipeRefreshLayout.setColorSchemeResources(R.color.color_primary);

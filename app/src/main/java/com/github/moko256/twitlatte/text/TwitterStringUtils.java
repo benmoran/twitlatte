@@ -27,7 +27,6 @@ import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.util.ArrayMap;
-import android.support.v7.content.res.AppCompatResources;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -62,6 +61,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import androidx.appcompat.content.res.AppCompatResources;
 import twitter4j.HashtagEntity;
 import twitter4j.Status;
 import twitter4j.SymbolEntity;

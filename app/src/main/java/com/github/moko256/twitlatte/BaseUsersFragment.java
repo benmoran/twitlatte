@@ -19,7 +19,6 @@ package com.github.moko256.twitlatte;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import rx.Observable;
 import rx.Single;
 import rx.android.schedulers.AndroidSchedulers;

@@ -19,10 +19,6 @@ package com.github.moko256.twitlatte;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +40,10 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import kotlin.Unit;
 import twitter4j.MediaEntity;
 
@@ -227,7 +227,7 @@ public class ImagePagerChildFragment extends Fragment {
                     }
                 });
                 imageView.setOnScaleChangeListener((float scaleFactor, float focusX, float focusY) -> view.setDragEnabled(scaleFactor <= 1F));
-                GlideRequests requests = GlideApp.with(this);
+                GlideRequests requests = GlideApp.with(this.getContext());
                 String url = mediaEntity.getMediaURLHttps();
                 requests
                         .load(TwitterStringUtils.convertLargeImageUrl(url))
