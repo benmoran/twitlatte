@@ -18,8 +18,8 @@ package com.github.moko256.twitlatte.intent
 
 import android.content.Context
 import android.net.Uri
-import android.support.v4.content.ContextCompat
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import com.github.moko256.twitlatte.R
 
 /**

@@ -16,7 +16,7 @@
 
 package com.github.moko256.twitlatte.entity
 
-import android.support.annotation.IntDef
+import androidx.annotation.IntDef
 import kotlin.annotation.Retention
 
 /**
