@@ -23,7 +23,7 @@
 
 -keep class com.github.moko256.twitlatte.** { *; }
 
--keepclassmembers class android.support.v7.widget.SearchView { *; }
+-keepclassmembers class androidx.appcompat.widget.SearchView { *; }
 
 -keep class okio.Okio { *; }
 

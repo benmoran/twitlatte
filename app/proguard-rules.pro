@@ -20,7 +20,7 @@
 -keep,allowoptimization class twitter4j.* { *; }
 -keep,allowoptimization class twitter4j.conf.PropertyConfigurationFactory
 
--keepclassmembers class android.support.v7.widget.SearchView { *; }
+-keepclassmembers class androidx.appcompat.widget.SearchView { *; }
 -keep,allowoptimization class android.support.v7.app.AppCompatViewInflater
 
 -dontwarn java.lang.invoke.*
