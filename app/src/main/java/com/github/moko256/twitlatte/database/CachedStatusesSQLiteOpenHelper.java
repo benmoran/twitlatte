@@ -22,7 +22,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.github.moko256.twitlatte.BuildConfig;
@@ -38,6 +37,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
 import kotlin.collections.ArraysKt;
 import twitter4j.HashtagEntity;
 import twitter4j.MediaEntity;

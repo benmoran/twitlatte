@@ -19,7 +19,6 @@ package com.github.moko256.twitlatte;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.text.Layout;
 import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
@@ -41,6 +40,7 @@ import com.github.moko256.twitlatte.entity.Type;
 import com.github.moko256.twitlatte.text.TwitterStringUtils;
 import com.github.moko256.twitlatte.widget.TweetImageTableView;
 
+import androidx.core.app.ActivityOptionsCompat;
 import rx.Single;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
