@@ -69,13 +69,14 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation "androidx.appcompat:appcompat:1.0.0-alpha1"
-    implementation "androidx.cardview:cardview:1.0.0-alpha1"
-    implementation "androidx.recyclerview:recyclerview:1.0.0-alpha1"
-    implementation "androidx.gridlayout:gridlayout:1.0.0-alpha1"
-    implementation "androidx.preference:preference:1.0.0-alpha1"
-    implementation "androidx.browser:browser:1.0.0-alpha1"
-    implementation 'com.google.android.material:material:1.0.0-alpha1'
+    implementation "androidx.appcompat:appcompat:$androidx_version"
+    implementation "androidx.recyclerview:recyclerview:$androidx_version"
+    implementation "androidx.gridlayout:gridlayout:$androidx_version"
+    implementation "androidx.preference:preference:$androidx_version"
+    implementation "androidx.browser:browser:$androidx_version"
+    implementation "com.google.android.material:material:$androidx_version"
+
+    implementation "com.android.support:support-fragment:$support_library_version"
 
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 

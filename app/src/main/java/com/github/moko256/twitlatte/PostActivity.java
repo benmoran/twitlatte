@@ -132,7 +132,7 @@ public class PostActivity extends AppCompatActivity {
                 model.setTweetText(s.toString());
 
                 counterTextView.setText(String.valueOf(model.getTweetLength())+" / "+String.valueOf(model.getMaxTweetLength()));
-                counterTextView.setTextColor(model.isValidTweet()? Color.GRAY: Color.RED);
+                counterTextView.setTextColor(s.length() == 0 || model.isValidTweet()? Color.GRAY: Color.RED);
             }
 
             @Override

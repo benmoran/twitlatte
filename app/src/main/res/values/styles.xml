@@ -16,7 +16,9 @@
 
 <resources>
 
-    <style name="BaseAppTheme" parent="Theme.AppCompat.DayNight">
+    <style name="DayNight" parent="Theme.MaterialComponents.Light" />
+
+    <style name="BaseAppTheme" parent="DayNight">
 
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
@@ -24,14 +26,6 @@
 
         <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
         <item name="popupTheme">@style/AppTheme.PopupOverlay</item>
-
-        <!-- New MaterialComponents attributes. -->
-        <item name="colorPrimaryLight">?attr/colorPrimary</item>
-        <item name="colorSecondary">?attr/colorPrimary</item>
-        <item name="colorSecondaryLight">?attr/colorPrimaryLight</item>
-        <item name="colorSecondaryDark">?attr/colorPrimaryDark</item>
-        <item name="scrimBackground">@color/mtrl_scrim_color</item>
-        <item name="snackbarButtonStyle">?attr/borderlessButtonStyle</item>
     </style>
 
     <style name="BaseTheme" parent="BaseAppTheme"/>
@@ -63,8 +57,8 @@
 
     <style name="ShowTweetImageActivityTheme" parent="BaseShowTweetImageActivityTheme"/>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <style name="SettingsActivityTheme" parent="AppTheme">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>

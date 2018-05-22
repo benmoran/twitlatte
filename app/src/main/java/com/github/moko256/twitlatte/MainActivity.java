@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements BaseListFragment.
 
         });
 
-        headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        headerView = navigationView.getHeaderView(0);
 
         userNameText = headerView.findViewById(R.id.user_name);
         userIdText = headerView.findViewById(R.id.user_id);

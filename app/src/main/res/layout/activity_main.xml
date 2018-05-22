@@ -51,6 +51,7 @@
                 android:id="@+id/toolbar_tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:tabBackground="?colorPrimary"
                 app:tabIndicatorColor="#FFFFFF"
                 app:tabIndicatorHeight="2dp"/>
 
@@ -68,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
+            android:theme="@style/Widget.MaterialComponents.FloatingActionButton"
             app:fabSize="normal"
             app:srcCompat="@drawable/ic_add_white_24dp" />
 
@@ -78,7 +80,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:theme="@style/Widget.MaterialComponents.NavigationView"
+        android:fitsSystemWindows="false"
         app:menu="@menu/activity_main_drawer"
-        tools:headerLayout="@layout/nav_header_main" />
+        app:headerLayout="@layout/nav_header_main" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
