@@ -162,10 +162,14 @@ public class ShowTweetActivity extends AppCompatActivity {
     }
 
     private String getShareUrl() {
-        return ((StatusCacheMap.CachedStatus) GlobalApplication.statusCache.get(statusId)).getRemoteUrl();
+        return getStatus().getRemoteUrl();
     }
 
-        @Override
+    private StatusCacheMap.CachedStatus getStatus() {
+        return ((StatusCacheMap.CachedStatus) GlobalApplication.statusCache.get(statusId));
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_quote:
@@ -179,7 +183,7 @@ public class ShowTweetActivity extends AppCompatActivity {
                         new Intent()
                                 .setAction(Intent.ACTION_SEND)
                                 .setType("text/plain")
-                                .putExtra(Intent.EXTRA_TEXT, getShareUrl()),
+                                .putExtra(Intent.EXTRA_TEXT, getStatus().getText() + " " + getShareUrl()),
                         getString(R.string.share)));
                 break;
             case R.id.action_open_in_browser:
